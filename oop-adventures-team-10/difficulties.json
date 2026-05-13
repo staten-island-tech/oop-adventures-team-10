@@ -1,37 +1,37 @@
 [
     {
         "number": 0,
-        "difficulty": "easy",
+        "difficulty": "Easy",
         "starting debt": 1000000.00,
         "weekly interest": 1.01,
-        "daily payment:": 500
+        "daily payment": 500
     },
     {
         "number": 1,
-        "difficulty": "medium",
+        "difficulty": "Medium",
         "starting debt": 10000000.00,
         "weekly interest": 1.05,
-        "daily payment:": 1000
+        "daily payment": 1000
     },
     {
         "number": 2,
-        "difficulty": "hard",
+        "difficulty": "Hard",
         "starting debt": 100000000.00,
         "weekly interest": 1.10,
-        "daily payment:": 2000
+        "daily payment": 2000
     },
     {
         "number": 3,
-        "difficulty": "impossible",
+        "difficulty": "Impossible",
         "starting debt": 1000000000.00,
         "weekly interest": 1.15,
-        "daily payment:": 5000
+        "daily payment": 5000
     },
     {
         "number": 4,
-        "difficulty": "dumb dastardly disgustingly dreadfully drunk deadbeat dreary declining deceitful dry disloyal damp despicable defective depressing despondent disagreeable dad",
+        "difficulty": "Dumb Dastardly Disgustingly Dreadfully Drunk Deadbeat Dreary Declining deceitful dry disloyal damp despicable defective depressing despondent disagreeable dad",
         "starting debt": 1000000000000000.00,
         "weekly interest": 1.25,
-        "daily payment:": 10000
+        "daily payment": 10000
     }
 ]
