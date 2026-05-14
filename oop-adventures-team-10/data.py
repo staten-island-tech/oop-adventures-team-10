@@ -1,9 +1,9 @@
 import json
-diff = open("./difficulties.json", encoding="utf8")
-difficulties = json.load(diff)
+difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
 
 class character:
-    def __init__(self, debt, interest, payments, money, hunger, time):
+    def __init__(self, name, debt, interest, payments, money, hunger, time):
+        self.name = name
         self.debt = debt
         self.interest = interest
         self.payments = payments
@@ -12,6 +12,7 @@ class character:
         self.time = time
     def terminal(self):
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print("|", self.name)
         print("|", self.time)
         print("| Debt to be payed:", self.debt)
         print("| Balance: $", self.money)
@@ -22,6 +23,7 @@ class character:
         print("| Casino")
         print("| Horse Stables")
         print("| Restaurant")
+        print("| Loan Sharks")
         print("| Your House")
         print("|")
         print("|                    Miscellanous")
