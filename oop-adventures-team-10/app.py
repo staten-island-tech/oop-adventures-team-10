@@ -5,7 +5,8 @@ import random
 difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
 
 class character:
-    def __init__(self, debt, interest, payments, money, hunger, time):
+    def __init__(self, name, debt, interest, payments, money, hunger, time):
+        self.name = name
         self.debt = debt
         self.interest = interest
         self.payments = payments
@@ -14,6 +15,7 @@ class character:
         self.time = time
     def terminal(self):
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print("|", self.name)
         print("|", self.time)
         print("| Debt to be payed:", self.debt)
         print("| Balance: $", self.money)
@@ -37,6 +39,7 @@ class character:
 
 
 
+
 difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
 currentdiff = int(10)
 trueorfalse = 0
@@ -57,8 +60,8 @@ while trueorfalse != True:
             break
     if trueorfalse != True:
         currentdiff = input("Choose a valid difficulty: ").lower()
-input("What is your name")
-player = character(difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["weekly interest"], difficulties[currentdiff]["daily payment"], 50000, 100, 6)
+
+player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["weekly interest"], difficulties[currentdiff]["daily payment"], 50000, 100, 6)
 
 while player.money >= 0 and player.hunger >= 0:
     wipescreen(50)
