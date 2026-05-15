@@ -22,18 +22,19 @@ elif mode == "big winner":
     time.sleep(0.5)
     print("You have inputed horse", horseval1, ", is that correct?")
     accuracy1 = input("").lower()
-print("______________________________________________________")
-while race == True:
-    h1 = random.randint(1,8)
-    time.sleep(random.randint(1, 2))
-    print(h1, "#1")
+print("____________________________________")
+h1 = random.randint(1,8)
+time.sleep(0.5)
+h2 = random.randint(1,8)
+time.sleep(0.5)
+h3 = random.randint(1,8)
+time.sleep(0.5)
+while h1 == h2:
     h2 = random.randint(1,8)
-    time.sleep(random.randint(1, 2))
-    print(h2, "#2")
+while h3 == h2 or h3 == h1:
     h3 = random.randint(1,8)
-    print(h3, "#3")
-    while h1 == h2:
-        h2 = random.randint(1,8)
-    while h3 == h2 or h3 == h1:
-        h3 = random.randint(1,8)
-    race = False
+print("_______________Lap 1________________")
+print("#1:", h1)
+print("#2:", h2)
+print("#3:", h3)
+
