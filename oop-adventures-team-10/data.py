@@ -1,6 +1,3 @@
-import json
-difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
-
 class character:
     def __init__(self, name, debt, interest, payments, money, hunger, time):
         self.name = name
@@ -14,8 +11,8 @@ class character:
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
         print("|", self.name)
         print("|", self.time)
-        print("| Debt to be payed:", self.debt)
-        print("| Balance: $", self.money)
+        print(f"| Debt to be payed: ${self.debt}")
+        print(f"| Balance: ${self.money}")
         print("| Hunger:", self.hunger)
     def activities(self):     
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
@@ -33,4 +30,3 @@ class character:
         self.hunger = 100
         self.time = 6
         self.debt -= difficulties[self.x]["daily payment"]
-        self.debt *= difficulties[self.x]["weekly interest"]

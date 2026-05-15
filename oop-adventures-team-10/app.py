@@ -1,10 +1,11 @@
 import time
 import json
 import random
-import py
+
+from data import character
 
 difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
-classdata = py.load(open("oop-adventures-team-10./data.py", encoding="utf8"))
+
 
 currentdiff = int(10)
 trueorfalse = 0
@@ -40,4 +41,17 @@ while player.money >= 0 and player.hunger >= 0:
         print(f"Loan Shark guy: \"Let's see, you're {player.name}. What are you here for?\"")
         wipescreen(5)
         print("Your Options:")
-        print("\"I'm here to take another loan.\" (This will add to your current debt and interest will be applied accordingly.)")
+        print("1.\"I'm here to take another loan.\" (This will add to your current debt and interest will be applied accordingly.)")
+        print("2.\"I'm here to pay back some of my debt.\"(Minimum of $5,000 accepted.)")
+        print("3.\"Actually, nevermind. I'll be heading out.\"")
+        if input == "1":
+            print("Loan Shark guy: \"Well how much are you looking to borrow?\"")
+            action = input()
+            while action < 100 or action > 10000000:
+                if action < 100:
+                    print("Loan Shark guy: \"What? You came here just to borrow that little? Borrow some money or get the **** out.\"")
+                elif action > 10000000:
+                    print("\"I know your *** ain't gonna be able to pay all that, either get serious or get out.\"")
+                action = input()
+            print("\"All right, you're good to go. Now get going.\"")
+            player.debt += action
