@@ -1,40 +1,81 @@
 import random
 import time
+x = 1
 race = True
 print("Welcome to the el horsey where u lose all ur money, but theres a chance you can make 5 buckaroos!")
 time.sleep(1)
 accuracy = "no"
+accuracy1 = "no"
 while accuracy == "no":
-    betval = input("How much would you like to bet today? ")
+    betval = float(input("How much would you like to bet today? "))
     time.sleep(0.5)
     print("You have inputed", betval, "dollars, is that correct?")
     accuracy = input("").lower()
 mode = input("'top 3 horses' or 'big winner' ").lower()
 time.sleep(0.5)
-if mode == "top 3 horses":
-    horseval3 = int(input("8 Horses! Choose 3! Choose Wisely! Ex: 123: "))
-    time.sleep(0.5)
-    print("You have inputed horses", horseval3, ", is that correct?")
-    accuracy1 = input("").lower()
+if mode == "top 3" or "top 3 horses":
+    while accuracy1 == "no":
+        horseval3_1 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your first horse here! "))
+        horseval3_2 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your second horse here! "))
+        horseval3_3 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your third horse here! "))
+        time.sleep(0.5)
+        print("You have inputed horses", horseval3_1, horseval3_2, "and", horseval3_3, ", Correct?")
+        accuracy1 = input("").lower()
 elif mode == "big winner":
     print("ex: 1")
     horseval1 = int(input("8 Horses! Choose 1! Choose Wisely! Ex: 1: "))
     time.sleep(0.5)
     print("You have inputed horse", horseval1, ", is that correct?")
     accuracy1 = input("").lower()
-print("____________________________________")
-h1 = random.randint(1,8)
-time.sleep(0.5)
-h2 = random.randint(1,8)
-time.sleep(0.5)
-h3 = random.randint(1,8)
-time.sleep(0.5)
-while h1 == h2:
+    print("____________________________________")
+print("Let's begin the race!!!")
+time.sleep(1)
+print("3")
+time.sleep(1)
+print("2")
+time.sleep(1)
+print("1")
+time.sleep(1)
+print("GO!!!")
+time.sleep(1)
+while race == True:
+    h1 = random.randint(1,8)
     h2 = random.randint(1,8)
-while h3 == h2 or h3 == h1:
     h3 = random.randint(1,8)
-print("_______________Lap 1________________")
-print("#1:", h1)
-print("#2:", h2)
-print("#3:", h3)
-
+    while h1 == h2:
+        h2 = random.randint(1,8)
+    while h3 == h2 or h3 == h1:
+        h3 = random.randint(1,8)
+    print("_______________Lap", x,"________________")
+    print("Top 3 horses: ")
+    print("|Lead Horse:", h1)
+    print("|Second Place:", h2)
+    print("|Third Place:", h3)
+    time.sleep(2)
+    x += 1
+    if x >= 4:
+        print("Final Winners!", h1, h2, h3)
+        break
+time.sleep(1)
+if horseval3_1 == h1:
+    print("Congrats!")
+    print("Your chosen Lead horse has won!!!")
+    print("Your inputed cash has been multiplied by 5!!!")
+    betval *= 5
+    print(betval)
+elif horseval3_2 == h2:
+    print("Congrats!")
+    print("Your Second Place horse has won!!!")
+    print("Your inputed cash has been multiplied by 3!!!")
+    betval *= 3
+    print(betval)
+elif horseval3_3 == h3:
+    print("Congrats!")
+    print("Your Third Place horse has won!!!")
+    print("Your inputed cash has been multiplied by 1.5!!!")
+    betval *= 1.5
+    print(betval)
+else:
+    print("Stinky Run today, huh")
+    betval -= betval
+print("Final Outcome,", betval, "dollars")
