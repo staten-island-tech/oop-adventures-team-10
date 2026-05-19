@@ -1,41 +1,7 @@
 import time
 import json
 import random
-
-difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
-
-class character:
-    def __init__(self, debt, interest, payments, money, hunger, time):
-        self.debt = debt
-        self.interest = interest
-        self.payments = payments
-        self.money = money
-        self.hunger = hunger
-        self.time = time
-    def terminal(self):
-        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
-        print("|", self.time)
-        print("| Debt to be payed:", self.debt)
-        print("| Balance: $", self.money)
-        print("| Hunger:", self.hunger)
-    def activities(self):     
-        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
-        print("|                     Locations")
-        print("| Casino")
-        print("| Horse Stables")
-        print("| Restaurant")
-        print("| Your House")
-        print("|")
-        print("|                    Miscellanous")
-        print("| Check Wallet")
-        print("| Check Pockets")
-    def daily(self):
-        self.hunger = 100
-        self.time = 6
-        self.debt -= difficulties[self.x]["daily payment"]
-        self.debt *= difficulties[self.x]["weekly interest"]
-
-
+from data import character
 
 difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
 currentdiff = int(10)
@@ -44,6 +10,7 @@ def wipescreen(x):
     for i in range(x):
         print("")
 
+wipescreen(50)
 input("You've been slacking. You've racked up millions of debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate.")
 wipescreen(100)
 for parts in difficulties:
@@ -57,11 +24,23 @@ while trueorfalse != True:
             break
     if trueorfalse != True:
         currentdiff = input("Choose a valid difficulty: ").lower()
-input("What is your name")
-player = character(difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["weekly interest"], difficulties[currentdiff]["daily payment"], 50000, 100, 6)
+player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 6, "N/A")
 
 while player.money >= 0 and player.hunger >= 0:
     wipescreen(50)
     player.terminal()
     player.activities()
-    action = input()
+    player.action = str(input().lower())
+    wipescreen(25)
+    if "loan shark" in player.action:
+        player.loansharks()
+    if "casino" in player.action:
+        time.sleep(2)
+        player.casino()
+    player.time += 1
+    if player.time == 22 or player.action == "sleep":
+        wipescreen(25)
+        print("Going to sleep...")
+        time.sleep(2)
+        player.time = 6
+        player.daily()
