@@ -6,6 +6,7 @@ print("Welcome to the el horsey where u lose all ur money, but theres a chance y
 time.sleep(1)
 accuracy = "no"
 accuracy1 = "no"
+accuracy2 = "no"
 while accuracy == "no":
     betval = float(input("How much would you like to bet today? "))
     time.sleep(0.5)
@@ -13,7 +14,7 @@ while accuracy == "no":
     accuracy = input("").lower()
 mode = input("'top 3 horses' or 'big winner' ").lower()
 time.sleep(0.5)
-if mode == "top 3" or "top 3 horses":
+if mode == "top 3" or mode == "top 3 horses":
     while accuracy1 == "no":
         horseval3_1 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your first horse here! "))
         horseval3_2 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your second horse here! "))
@@ -22,12 +23,11 @@ if mode == "top 3" or "top 3 horses":
         print("You have inputed horses", horseval3_1, horseval3_2, "and", horseval3_3, ", Correct?")
         accuracy1 = input("").lower()
 elif mode == "big winner":
-    print("ex: 1")
-    horseval1 = int(input("8 Horses! Choose 1! Choose Wisely! Ex: 1: "))
-    time.sleep(0.5)
-    print("You have inputed horse", horseval1, ", is that correct?")
-    accuracy1 = input("").lower()
-    print("____________________________________")
+    while accuracy2 == "no":
+        horseval1 = int(input("8 Horses! Choose 1! Choose Wisely! Ex: 1: "))
+        time.sleep(0.5)
+        print("You have inputed horse", horseval1, ", is that correct?")
+        accuracy2 = input("").lower()
 print("Let's begin the race!!!")
 time.sleep(1)
 print("3")
@@ -56,26 +56,27 @@ while race == True:
     if x >= 4:
         print("Final Winners!", h1, h2, h3)
         break
-time.sleep(1)
-if horseval3_1 == h1:
-    print("Congrats!")
-    print("Your chosen Lead horse has won!!!")
-    print("Your inputed cash has been multiplied by 5!!!")
-    betval *= 5
-    print(betval)
-elif horseval3_2 == h2:
-    print("Congrats!")
-    print("Your Second Place horse has won!!!")
-    print("Your inputed cash has been multiplied by 3!!!")
-    betval *= 3
-    print(betval)
-elif horseval3_3 == h3:
-    print("Congrats!")
-    print("Your Third Place horse has won!!!")
-    print("Your inputed cash has been multiplied by 1.5!!!")
-    betval *= 1.5
-    print(betval)
-else:
-    print("Stinky Run today, huh")
-    betval -= betval
-print("Final Outcome,", betval, "dollars")
+if mode == "top 3" or mode == "top 3 horses":
+    time.sleep(1)
+    if horseval3_1 == h1 and horseval3_2 == h2 and horseval3_3 == h3:
+        print("Congratulations!!!!")
+        print("Your three chosen horses have won!!!")
+        print("Your inputed cash has been multiplied by 50!!!")
+        betval *= 50
+        print(betval)
+    else:
+        print("Stinky Run today, huh")
+        betval -= betval
+        print("Final Outcome,", betval, "dollars")
+elif mode == "big winner":
+    time.sleep(1)
+    if horseval1 == h1:
+        print("Congrats!!!!")
+        print("Your chosen lead horse has won!!!")
+        print("Your inputed cash has been multiplied by 5!!!")
+        betval *= 5
+        print(betval)
+    else:
+        print("Stinky Run today, huh")
+        betval -= betval
+        print("Final Outcome,", betval, "dollars")
