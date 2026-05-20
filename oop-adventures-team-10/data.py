@@ -67,9 +67,9 @@ class character:
         print("")
         self.action = input("Where would you like to go?").lower()
         if self.action.lower() == "russian roulette":
-            print("Well hello there kid, care for a game of Russian Roulette? You will be betting everything, yes?")
-            if input.lower() == "yes":
-                print("Haha. Well, I'll go first.")
+            self.action.lower() == input("Well hello there kid, care for a game of Russian Roulette? You will be betting everything, yes?")
+            if self.action == "yes":
+                print("Well, I'll go first.")
                 for i in range(5):
                     if i == 0 or i == 2 or i == 4:
                         print("The man puts the gun up to his head and you hear a click...")
