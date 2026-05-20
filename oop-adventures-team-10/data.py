@@ -2,7 +2,7 @@ import time
 import random
 
 class character:
-    def __init__(self, name, debt, interest, money, hunger, time, action):
+    def __init__(self, name, debt, interest, money, hunger, time, action, bet):
         self.name = name
         self.debt = debt
         self.interest = interest
@@ -10,6 +10,7 @@ class character:
         self.hunger = hunger
         self.time = time
         self.action = action
+        self.bet = bet
     def terminal(self):
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
         print("|", self.name)
@@ -62,7 +63,11 @@ class character:
         print("|   /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\        /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\           |")
         print("|   |Blackjack Table|       |Poker Table|           |")
         print("|   \_______________/       \___________/           |")
-        print("| Russian Roulette                                  |")
+        print("|                                                   |")
+        print("|                                                   |")
+        print("|     ________________        _________             |")
+        print("|    |Russian Roulette|      |Coin Flip|            |")
+        print("|     ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺       ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺             |")
         print("|___________________________________________________|")
         print("")
         self.action = input("Where would you like to go?").lower()
@@ -89,6 +94,33 @@ class character:
                 for i in range(25):
                     print("")
                 self.casino()
+        elif self.action.lower() == "coin flip":
+            self.bet = round(float(input("In this game, you flip a coin and if it lands on the face you call you double your bet. What's your bet? ")), 2)
+            while self.bet > self.money:
+                self.bet = round(float(input("You cannot wager more than you have, enter a valid amount. ")), 2)
+            print(f"Wagered ${self.bet}.")
+            print("Flipping coin...")
+            time.sleep(1)
+            while self.action != "heads" and self.action != "tails":
+                self.action = input("Heads or tails?").lower()
+            if "heads" == self.action:
+                if random.randint(0,1) == 1:
+                    print("Tails! You lose!")
+                    self.money -= self.bet
+                else:
+                    print("Heads! You win!")
+                    self.money += self.bet
+            elif "tails" == self.action:
+                if random.randint(0,1) == 1:
+                    print("Tails! You win!")
+                    self.money += self.bet
+                else:
+                    print("Heads! You lose!")
+                    self.money -= self.bet
+            input("")
+            for i in range(25):
+                print("")
+            self.casino()
     def work(self):
         print("Working at McDonalds...")
         self.money += (17-self.time)*17

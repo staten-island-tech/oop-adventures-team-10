@@ -24,7 +24,7 @@ while trueorfalse != True:
             break
     if trueorfalse != True:
         currentdiff = input("Choose a valid difficulty: ").lower()
-player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 6, "N/A")
+player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 6, "N/A", 0)
 
 while player.money >= 0 and player.hunger >= 0:
     wipescreen(50)
@@ -36,6 +36,7 @@ while player.money >= 0 and player.hunger >= 0:
         player.loansharks()
     if "casino" in player.action:
         time.sleep(2)
+        print("Heading to the Casino")
         player.casino()
     player.time += 1
     if player.time == 22 or player.action == "sleep":
