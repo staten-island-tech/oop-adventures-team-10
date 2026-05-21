@@ -22,6 +22,5 @@ cards = getCards()
 print(cards)
 draw = input("Would you like to draw a card?").lower()
 if draw == "yes":
-    data = getCards.response.json()
-
-print(cards["value"])
+    response = requests.get(url)
+    print(cards["value"])
