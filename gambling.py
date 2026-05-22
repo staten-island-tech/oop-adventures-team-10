@@ -2,25 +2,29 @@ import random
 import requests
 
 # BlackJack
-
-#Hearts (\(\hearts \)): A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-#Diamonds (\(\diamonds \)): A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-#Clubs (\(\clubs \)): A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-#Spades (\(\spades \)): A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-
+val = 0
+x2 = 0
 name = "m"
 
 def getCards():
-    url = "https://deckofcardsapi.com/api/deck/new/draw/?count=2"
+    url = "https://deckofcardsapi.com/api/deck/new/draw/?count=4"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        print(data)
+        # print(data)
+        return data
     else:
         print(f"Failed to fetch data. Status code: {response.status_code}")
 cards = getCards()
-print(cards)
-draw = input("Would you like to draw a card?").lower()
-if draw == "yes":
+
+print("The dealer has dealed you your cards...")
+while x2 <= 1:
+    url = "https://deckofcardsapi.com/api/deck/new/draw/?count=4"
     response = requests.get(url)
-    print(cards["value"])
+    x = (cards["cards"][x2]["value"]).upper()
+    y = (cards["cards"][x2]["suit"]).upper()
+    x2 += 1
+    print(x,"of", y)
+if x == "JACK" or x == "KING" or x == "QUEEN":
+    val += 10
+    print(val)
