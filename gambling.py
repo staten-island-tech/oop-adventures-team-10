@@ -18,13 +18,17 @@ def getCards():
 cards = getCards()
 
 print("The dealer has dealed you your cards...")
-while x2 <= 1:
+for i in range(2):
     url = "https://deckofcardsapi.com/api/deck/new/draw/?count=4"
     response = requests.get(url)
-    x = (cards["cards"][x2]["value"]).upper()
-    y = (cards["cards"][x2]["suit"]).upper()
-    x2 += 1
+    x = (cards["cards"][i]["value"]).upper()
+    y = (cards["cards"][i]["suit"]).upper()
     print(x,"of", y)
-if x == "JACK" or x == "KING" or x == "QUEEN":
-    val += 10
-    print(val)
+    if x == "JACK" or x == "KING" or x == "QUEEN":
+        x = 10
+    elif x == "ACE":
+        x = 1
+    else:
+        val += int(x)
+
+print(val)
