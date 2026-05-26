@@ -11,7 +11,7 @@ def wipescreen(x):
         print("")
 
 wipescreen(50)
-input("You've been slacking. You've racked up millions of debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate.")
+input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate.")
 wipescreen(100)
 for parts in difficulties:
     print(parts["difficulty"], ": Start with a debt of $", parts["starting debt"])
@@ -24,24 +24,26 @@ while trueorfalse != True:
             break
     if trueorfalse != True:
         currentdiff = input("Choose a valid difficulty: ").lower()
-player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 6, "N/A", 0)
+player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 360, "N/A", 0, 100)
 
-while player.money >= 0 and player.hunger >= 0:
+while player.money >= 0 and player.hunger >= 0 and player.health > 0:
     wipescreen(50)
     player.terminal()
-    player.activities()
     player.action = str(input().lower())
     wipescreen(25)
     if "loan shark" in player.action:
         player.loansharks()
-    if "casino" in player.action:
-        time.sleep(2)
-        print("Heading to the Casino")
+    elif "casino" in player.action:
+        print("Heading to the Casino...")
+        time.sleep(1)
+        wipescreen(35)
+        print("Welcome to the casino!")
         player.casino()
-    player.time += 1
-    if player.time == 22 or player.action == "sleep":
+    else:
+        print("Enter a valid course of action.")
+    if player.action == "sleep":
         wipescreen(25)
         print("Going to sleep...")
         time.sleep(2)
-        player.time = 6
+        player.time = 360
         player.daily()
