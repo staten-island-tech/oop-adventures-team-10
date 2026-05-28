@@ -39,6 +39,11 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         wipescreen(35)
         print("Welcome to the casino!")
         player.casino()
+    elif "restaurant" in player.action:
+        print("Walking to the restaurant...")
+        time.sleep(1)
+        wipescreen(30)
+        player.restaurant()
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":

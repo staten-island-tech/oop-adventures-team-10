@@ -2,40 +2,35 @@ import time
 import random
 food = [
     {
-        "Food": "8in Pepperoni Pizza",
-        "Price": 29.99,
-        "Hunger filled": 10
+        "food": "8in Pepperoni Pizza",
+        "price": 29.99,
+        "hunger filled": 10
     },
     {
-        "Food": "Cheeseburger",
-        "Price": 14.99,
-        "Hunger filled": 5
+        "food": "Cheeseburger",
+        "price": 14.99,
+        "hunger filled": 5
     },
     {
-        "Food": "Fifty gram tin of Caviar",
-        "Price": 499.99,
-        "Hunger filled": 2
+        "food": "Fifty gram tin of Caviar",
+        "price": 499.99,
+        "hunger filled": 2
     },
     {
-        "Food": "Plate of Spaghetti and Meatballs",
-        "Price": 39.99,
-        "Hunger filled": 12
+        "food": "Plate of Spaghetti and Meatballs",
+        "price": 39.99,
+        "hunger filled": 12
     },
     {
-        "Food": "Steak and Potatoes",
-        "Price": 99.99,
-        "Hunger filled": 20
+        "food": "Steak and Potatoes",
+        "price": 99.99,
+        "hunger filled": 20
     },
     {
-        "Food": ,
-        "Price": ,
-        "Hunger filled":
-    },
-    {
-        "Food": ,
-        "Price": ,
-        "Hunger filled":
-    },
+        "food": "Barbeque Pork Ribs",
+        "price": 59.99,
+        "hunger filled": 15
+    }
 ]
 
 class character:
@@ -98,10 +93,9 @@ class character:
         print("|                   Town Casino                     |")
         print("|                                                   |")
         print("|                                                   |")
-        print("|   /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\       /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\           |")
-        print("|   |Blackjack Table|       |Poker Table|           |")
-        print("|   \_______________/       \___________/           |")
-        print("|                                                   |")
+        print("|   /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\     /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\          |")
+        print("|   |Blackjack Table|     |Roulette Wheel|          |")
+        print("|   \_______________/     \_____________/           |")
         print("|                                                   |")
         print("|     ________________        _________             |")
         print("|    |Russian Roulette|      |Coin Flip|            |")
@@ -183,14 +177,21 @@ class character:
     def restaurant(self):
         print("Waiter: Welcome, let me get you a seat and here's your menu.")
         print("")
-        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
-        print("|                                                                                                    |")
+        for data in food:
+            print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+            print(f"{f'| {data["food"]} ${data["price"]}, Hunger value: {data["hunger filled"]}':<101}|")
         print("⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+        print("7 to exit. 1 through 6 to order.")
+        self.action = int(input(""))
+        while self.action != 7:
+            if self.action < 7 and self.action > 0:
+                if self.money > food[self.action-1]["price"]:
+                    self.money -= food[self.action-1]["price"]
+                    self.hunger += food[self.action-1]["hunger filled"]
+                    print(f"Ordered {food[self.action-1]["food"]}")
+                    self.money = round(self.money, 2)
+                    self.action = int(input(""))
+            else:
+                self.action = int(input("Choose a valid course of action."))
     def work(self):
         print("In development")
