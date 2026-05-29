@@ -1,11 +1,15 @@
 import random
 import requests
 import time
+
 # BlackJack
+
 val = 0
 val1 = 0
 name = "m"
 c = 3
+accuracy = "no"
+
 # Geting Cards
 
 def getCards():
@@ -19,6 +23,16 @@ def getCards():
     else:
         print(f"Failed to fetch data. Status code: {response.status_code}")
 cards = getCards()
+
+# How much would you like to gamble?
+
+while accuracy == "no":
+    betval = float(input("How much would you like to bet today? "))
+    time.sleep(0.5)
+    print("You have inputed", betval, "dollars, is that correct?")
+    accuracy = input("").lower()
+time.sleep(0.5)
+print("Very well, good luck")
 
 # Your Cards
 
@@ -79,9 +93,8 @@ if val >= 22:
 
 # Dealers Deck
 
-print("______________________Dealer's cards______________________")
-
 if val <= 21:
+    print("______________________Dealer's cards______________________")
     print("Your dealers deck")
     for i in range(2):
         response = requests.get(url)
@@ -99,6 +112,7 @@ if val <= 21:
         c += 1
     print("🔴 dealers value", val1)
     time.sleep(0.5)
+
     # Dealer Hits or Stands
 
     while val1 <= 16:
@@ -131,13 +145,26 @@ if val <= 21:
 
     if val1 <= 21:
         if val > val1:
+            b = "W"
             print("You Won!!")
         elif val == val1:
+            b = "T"
             print("It's a tie!")
         else:
+            b = "L"
             print("You lostt")
 
 else:
+    b = "L"
     print("You lostt")
 
+if b == "W":
+    betval *= 2
+    print("Congrats!, your money has been doubled!", betval, "$")
+elif b == "T":
+    print("It's a tie")
+    print("Not bad, but not good!", betval, "$")
+else:
+    betval = 0
+    print("Dang man, that's rough, better luck next time.", betval, "$")
 
