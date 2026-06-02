@@ -162,7 +162,6 @@ if b == "W":
     betval *= 2
     print("Congrats!, your money has been doubled!", betval, "$")
 elif b == "T":
-    print("It's a tie")
     print("Not bad, but not good!", betval, "$")
 else:
     betval = 0
