@@ -34,7 +34,7 @@ food = [
 ]
 
 class character:
-    def __init__(self, name, debt, interest, money, hunger, time, action, bet, health):
+    def __init__(self, name, debt, interest, money, hunger, time, action, bet, health, wallet):
         self.name = name
         self.debt = debt
         self.interest = interest
@@ -44,6 +44,7 @@ class character:
         self.action = action
         self.bet = bet
         self.health = health
+        self.wallet = wallet
     def terminal(self):
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
         print(f"{f'| {self.name}':<101}|")
@@ -62,7 +63,6 @@ class character:
         print("|                                                                                                    |")
         print("|                    Miscellanous                                                                    |")
         print("| Check Wallet                                                                                       |")
-        print("| Check Pockets                                                                                      |")
         print("⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
     def daily(self):
         self.hunger -= 20
@@ -190,8 +190,29 @@ class character:
                     self.hunger += food[self.action-1]["hunger filled"]
                     print(f"Ordered {food[self.action-1]["food"]}")
                     self.money = round(self.money, 2)
+                    if self.hunger > 125:
+                        self.hunger = 125
                     self.action = int(input(""))
             else:
                 self.action = int(input("Choose a valid course of action."))
+    def checkwallet(self):
+        print("Wallet")
+        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print("| |⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|                  |")
+        print("| |       New Mexico                  Identification Card             |                  |")
+        print(f"{f'| | ⠀⠀⠀⠀⠀⠀⢀⣴⣾⡿⢿⣿⣷⣤⠀⠀ ⠀⠀⠀    2   {self.name}':<70}|                  |")
+        print("| | ⠀⠀⠀⠀⠀⠀⡿⠁⠀⠀⠀⠀⠀⢹⣧⠀⠀⠀⠀⠀    3    DOB: 9/7/1958                        |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠸⣿⡆⠀⠀⠀⠀    8    308 Negra Arroyo Lane                |                  |") 
+        print("| | ⠀⠀⠀⠀⠀⢸⣷⣀⠀⠀⠀⠀⣀⣸⣿⣇⠀⠀⠀⠀         Albuquerque, NM 87104                |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢺⣿⠿⠿⢻⡇⣿⠛⢿⢿⡟⠀⠀⠀⠀    15   SEX: M                               |                  |")
+        print("| | ⠀⠀⠀⠀⠀⠘⣿⡒⠐⣺⡇⢻⣗⢲⣿⠃⠀⠀⠀⠀    18   EYES: BRO                            |                  |")
+        print("| | ⠀⠀⠀⠀⠀⠀⢸⣷⣴⣾⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀    16   HGT: 5'-11\"                          |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢀⣼⣿⣿⡍⢿⣿⣿⣿⣇⠀⠀⠀⠀⠀                                              |                  |")
+        print("| | ⠀⣀⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣀                                              |                  |")
+        print("| | ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿                                              |                  |")
+        print("| |_⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿______________________________________________|                  |")
+        print(f"{f'| {self.wallet}':<91}|")
+        input("|________________________________________________________________________________________|")
+        
     def work(self):
         print("In development")

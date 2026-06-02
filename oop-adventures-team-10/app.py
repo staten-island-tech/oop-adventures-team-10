@@ -10,6 +10,7 @@ def wipescreen(x):
     for i in range(x):
         print("")
 
+
 wipescreen(50)
 input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate.")
 wipescreen(100)
@@ -24,7 +25,10 @@ while trueorfalse != True:
             break
     if trueorfalse != True:
         currentdiff = input("Choose a valid difficulty: ").lower()
-player = character(input("What is your name? "), difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 360, "N/A", 0, 100)
+player = character("", difficulties[currentdiff]["starting debt"], difficulties[currentdiff]["interest"], 50000, 100, 360, "N/A", 0, 100, [])
+player.name = input("What is your name? ")
+while len(player.name) > 40:
+    player.name = input("Please enter a name less than 40 characters long. ")
 
 while player.money >= 0 and player.hunger >= 0 and player.health > 0:
     wipescreen(50)
@@ -44,6 +48,8 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         time.sleep(1)
         wipescreen(30)
         player.restaurant()
+    elif "check wallet" in player.action:
+        player.checkwallet()
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":
