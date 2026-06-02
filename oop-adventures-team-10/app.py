@@ -50,6 +50,8 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         player.restaurant()
     elif "check wallet" in player.action:
         player.checkwallet()
+    elif "horse race" in player.action:
+        player.horseracing()
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":

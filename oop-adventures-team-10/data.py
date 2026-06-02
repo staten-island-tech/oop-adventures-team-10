@@ -56,7 +56,7 @@ class character:
         print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
         print("|                     Locations                                                                      |")
         print("| Casino                                                                                             |")
-        print("| Horse Stables                                                                                      |")
+        print("| Horse Races                                                                                        |")
         print("| Restaurant                                                                                         |")
         print("| Loan Sharks                                                                                        |")
         print("| Local McDonalds                                                                                    |")
@@ -214,7 +214,89 @@ class character:
         print("| |_⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿______________________________________________|                  |")
         print(f"{f'| {self.wallet}':<91}|")
         input("|________________________________________________________________________________________|")
-       
+    def horseracing(self):
+        multi = 0
+        self.action = "no"
+        accuracy1 = "no"
+        accuracy2 = "no"
+        x = 1
+        mode = "N/A"
+        race = True
+        print("Welcome to the el horsey where u lose all ur money, but theres a chance you can make 5 buckaroos!")
+        time.sleep(1)
+        while self.action == "no":
+            self.bet = float(input("How much would you like to bet today? "))
+            time.sleep(0.5)
+            print(f"Your bet is ${self.bet}, correct?")
+            self.action = input("").lower()
+        while not "trifecta" in mode and not "single winner" in mode:
+            mode = input("Bet on a trifecta or single winner. ").lower()
+        time.sleep(0.5)
+        self.action == "no"
+        if "trifecta" in mode:
+            while self.action == "no":
+                horseval3_1 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your first horse here! "))
+                horseval3_2 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your second horse here! "))
+                horseval3_3 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your third horse here! "))
+                time.sleep(0.5)
+                print("You have inputed horses", horseval3_1, horseval3_2, "and", horseval3_3, ", correct?")
+                self.action = input("").lower()
+        elif "single winner" in mode:
+            while self.action == "no":
+                horseval1 = int(input("8 Horses! Choose 1! Choose Wisely! Ex: 1: "))
+                time.sleep(0.5)
+                print("You have inputed horse", horseval1, ", is that correct?")
+                self.action = input("").lower()
+        self.money -= self.bet
+        print(self.money)
+        print("Let's begin the race!!!")
+        for i in range(3):
+            time.sleep(1)
+            print(3-i)
+        print("GO!!!")
+        time.sleep(1)
+        while race == True:
+            h1 = random.randint(1,8)
+            h2 = random.randint(1,8)
+            h3 = random.randint(1,8)
+            while h1 == h2:
+                h2 = random.randint(1,8)
+            while h3 == h2 or h3 == h1:
+                h3 = random.randint(1,8)
+            print("_______________Lap", x,"________________")
+            print("Top 3 horses: ")
+            print("|Lead Horse:", h1)
+            print("|Second Place:", h2)
+            print("|Third Place:", h3)
+            time.sleep(2)
+            x += 1
+            if x >= 4:
+                print("Final Winners!", h1, h2, h3)
+                break
+        if "trifecta" in mode:
+            time.sleep(1)
+            if horseval3_1 == h1 and horseval3_2 == h2 and horseval3_3 == h3:
+                multi = random.randint(3500, 5500)/10
+                print("Congratulations!!!!")
+                print("Your three chosen horses have won!!!")
+                self.bet = round((self.bet * multi), 2)
+                print(f"Congratulations, you've won ${self.bet}!")
+                self.money += self.bet
+            else:
+                print("Stinky Run today, huh?")
+                print("Final Outcome, 0 dollars")
+        elif mode == "single winner":
+            time.sleep(1)
+            if horseval1 == h1:
+                multi = random.randint(80, 100)/10
+                self.bet = round((self.bet * multi), 2)
+                print("Congrats!!!!")
+                print("Your chosen lead horse has won!!!")
+                print(f"You've won {self.bet}")
+                self.money += self.bet
+            else:
+                print("Stinky Run today, huh")
+                print("Final Outcome, $0.")
     def work(self):
         print("In development")
 
