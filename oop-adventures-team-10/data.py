@@ -1,8 +1,41 @@
 import time
 import random
+food = [
+    {
+        "food": "8in Pepperoni Pizza",
+        "price": 29.99,
+        "hunger filled": 10
+    },
+    {
+        "food": "Cheeseburger",
+        "price": 14.99,
+        "hunger filled": 5
+    },
+    {
+        "food": "Fifty gram tin of Caviar",
+        "price": 499.99,
+        "hunger filled": 2
+    },
+    {
+        "food": "Plate of Spaghetti and Meatballs",
+        "price": 39.99,
+        "hunger filled": 12
+    },
+    {
+        "food": "Steak and Potatoes",
+        "price": 99.99,
+        "hunger filled": 20
+    },
+    {
+        "food": "Barbeque Pork Ribs",
+        "price": 59.99,
+        "hunger filled": 15
+    }
+]
+
 
 class character:
-    def __init__(self, name, debt, interest, money, hunger, time, action):
+    def __init__(self, name, debt, interest, money, hunger, time, action, bet, health, wallet):
         self.name = name
         self.debt = debt
         self.interest = interest
@@ -10,29 +43,31 @@ class character:
         self.hunger = hunger
         self.time = time
         self.action = action
+        self.bet = bet
+        self.health = health
+        self.wallet = wallet
     def terminal(self):
-        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
-        print("|", self.name)
-        print("|", self.time)
-        print(f"| Debt to be payed: ${self.debt}")
-        print(f"| Balance: ${self.money}")
-        print("| Hunger:", self.hunger)
-    def activities(self):     
-        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
-        print("|                     Locations                    |")
-        print("| Casino                                           |")
-        print("| Horse Stables                                    |")
-        print("| Restaurant                                       |")
-        print("| Loan Sharks                                      |")
-        print("| Local McDonalds                                  |")
-        print("| Your House                                       |")
-        print("|                                                  |")
-        print("|                    Miscellanous                  |")
-        print("| Check Wallet                                     |")
-        print("| Check Pockets                                    |")
+        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print(f"{f'| {self.name}':<101}|")
+        print(f"{f'| Time {self.time // 60}:{self.time % 60:02}':<101}|")
+        print(f"{f'| Debt to be payed: ${self.debt}':<101}|")
+        print(f"{f'| Balance: ${self.money}':<101}|")
+        print(f"{f'| Hunger: {self.hunger}':<101}|")
+        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print("|                     Locations                                                                      |")
+        print("| Casino                                                                                             |")
+        print("| Horse Stables                                                                                      |")
+        print("| Restaurant                                                                                         |")
+        print("| Loan Sharks                                                                                        |")
+        print("| Local McDonalds                                                                                    |")
+        print("| Your House                                                                                         |")
+        print("|                                                                                                    |")
+        print("|                    Miscellanous                                                                    |")
+        print("| Check Wallet                                                                                       |")
+        print("⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
     def daily(self):
         self.hunger -= 20
-        self.time = 6
+        self.time = 360
         self.debt = round(self.debt*self.interest, 2)
     def loansharks(self):
         print("You head to the loan sharks to pay off your debt.")
@@ -55,42 +90,131 @@ class character:
             self.debt += self.action
             self.money += self.action
     def casino(self):
-        print("|⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺|")
+        print("|⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺|")
         print("|                   Town Casino                     |")
         print("|                                                   |")
         print("|                                                   |")
-        print("|   /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\        /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\           |")
-        print("|   |Blackjack Table|       |Poker Table|           |")
-        print("|   \_______________/       \___________/           |")
-        print("| Russian Roulette                                  |")
+        print("|   /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\     /⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺\          |")
+        print("|   |Blackjack Table|     |Roulette Wheel|          |")
+        print("|   \_______________/     \_____________/           |")
+        print("|                                                   |")
+        print("|     ________________        _________             |")
+        print("|    |Russian Roulette|      |Coin Flip|            |")
+        print("|     ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺        ⎺⎺⎺⎺⎺⎺⎺⎺⎺             |")
+        print("|                                                   |")
+        print("|                     V Exit V                      |")
         print("|___________________________________________________|")
         print("")
         self.action = input("Where would you like to go?").lower()
-        if self.action.lower() == "russian roulette":
-            self.action.lower() == input("Well hello there kid, care for a game of Russian Roulette? You will be betting everything, yes?")
-            if self.action == "yes":
+        if self.action == "russian roulette":
+            print("Well hello there kid, care for a game of Russian Roulette? You will be betting everything, yes?")
+            if input("").lower() == "yes":
                 print("Well, I'll go first.")
+                time.sleep(1.5)
+                print("He spins the barrel.")
+                time.sleep(1.5)
                 for i in range(5):
                     if i == 0 or i == 2 or i == 4:
                         print("The man puts the gun up to his head and you hear a click...")
-                        time.sleep(2)
+                        time.sleep(1)
                         if random.randint(0, 5-i) == 0:
-                            print("Bang! The revolver goes off and you win.")
+                            input("Bang! The revolver goes off and you win.")
                             self.money *= 2
+                            break
+                        else:
+                            print("He survives. He hands the gun to you.")
+                            time.sleep(1)
                     else:
                         print("You put the gun up to your head and you hear a click...")
-                        time.sleep(2)
+                        time.sleep(1)
                         if random.randint(0, 5-i) == 0:
-                            print("Bang! The revolver goes off and you're dead.")
+                            input("Bang! The revolver goes off and you're dead.")
+                            self.health = -123456789
                             break
+                        else:
+                            print("You're safe. You hand the shady man the revolver.")
+                            time.sleep(1)
+                self.time += 15
+                self.hunger -= 5
             else:
                 print("Ha, well too bad.")
                 time.sleep(2)
                 for i in range(25):
                     print("")
                 self.casino()
+        elif self.action == "coin flip":
+            print("In this game, you flip a coin and if it lands on the face you call you double your bet. What's your bet?  ")
+            self.bet = round(float(input(" ")), 2)
+            while self.bet > self.money:
+                self.bet = round(float(input("You cannot wager more than you have, enter a valid amount.  ")), 2)
+            print(f"Wagered ${self.bet}.")
+            print("Flipping coin...")
+            time.sleep(1)
+            while self.action != "heads" and self.action != "tails":
+                self.action = input("Heads or tails?  ").lower()
+            if "heads" == self.action:
+                if random.randint(0,1) == 1:
+                    print("Tails! You lose!")
+                    self.money -= self.bet
+                else:
+                    print("Heads! You win!")
+                    self.money += self.bet
+            elif "tails" == self.action:
+                if random.randint(0,1) == 1:
+                    print("Tails! You win!")
+                    self.money += self.bet
+                else:
+                    print("Heads! You lose!")
+                    self.money -= self.bet
+            input("")
+            self.time += 10
+            self.hunger -= 5
+            for i in range(25):
+                print("")
+            self.casino()
+        elif self.action == "exit":
+            print("Leaving the casino...")
+            time.sleep(1)
+    def restaurant(self):
+        print("Waiter: Welcome, let me get you a seat and here's your menu.")
+        print("")
+        for data in food:
+            print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+            print(f"{f'| {data["food"]} ${data["price"]}, Hunger value: {data["hunger filled"]}':<101}|")
+        print("⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+        print("7 to exit. 1 through 6 to order.")
+        self.action = int(input(""))
+        while self.action != 7:
+            if self.action < 7 and self.action > 0:
+                if self.money > food[self.action-1]["price"]:
+                    self.money -= food[self.action-1]["price"]
+                    self.hunger += food[self.action-1]["hunger filled"]
+                    print(f"Ordered {food[self.action-1]["food"]}")
+                    self.money = round(self.money, 2)
+                    if self.hunger > 125:
+                        self.hunger = 125
+                    self.action = int(input(""))
+            else:
+                self.action = int(input("Choose a valid course of action."))
+    def checkwallet(self):
+        print("Wallet")
+        print("|⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|")
+        print("| |⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺|                  |")
+        print("| |       New Mexico                  Identification Card             |                  |")
+        print(f"{f'| | ⠀⠀⠀⠀⠀⠀⢀⣴⣾⡿⢿⣿⣷⣤⠀⠀ ⠀⠀⠀    2   {self.name}':<70}|                  |")
+        print("| | ⠀⠀⠀⠀⠀⠀⡿⠁⠀⠀⠀⠀⠀⢹⣧⠀⠀⠀⠀⠀    3    DOB: 9/7/1958                        |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠸⣿⡆⠀⠀⠀⠀    8    308 Negra Arroyo Lane                |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢸⣷⣀⠀⠀⠀⠀⣀⣸⣿⣇⠀⠀⠀⠀         Albuquerque, NM 87104                |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢺⣿⠿⠿⢻⡇⣿⠛⢿⢿⡟⠀⠀⠀⠀    15   SEX: M                               |                  |")
+        print("| | ⠀⠀⠀⠀⠀⠘⣿⡒⠐⣺⡇⢻⣗⢲⣿⠃⠀⠀⠀⠀    18   EYES: BRO                            |                  |")
+        print("| | ⠀⠀⠀⠀⠀⠀⢸⣷⣴⣾⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀    16   HGT: 5'-11\"                          |                  |")
+        print("| | ⠀⠀⠀⠀⠀⢀⣼⣿⣿⡍⢿⣿⣿⣿⣇⠀⠀⠀⠀⠀                                              |                  |")
+        print("| | ⠀⣀⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣀                                              |                  |")
+        print("| | ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿                                              |                  |")
+        print("| |_⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿______________________________________________|                  |")
+        print(f"{f'| {self.wallet}':<91}|")
+        input("|________________________________________________________________________________________|")
+       
     def work(self):
-        print("Working at McDonalds...")
-        self.money += (17-self.time)*17
-        self.time = 17
-        self.hunger -= (17-self.time)*5
+        print("In development")
+
