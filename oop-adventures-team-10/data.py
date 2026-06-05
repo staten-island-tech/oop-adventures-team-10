@@ -33,6 +33,20 @@ food = [
     }
 ]
 
+class horseandjockey:
+    def __init__(self, horsename, jockeyname, horsespeed, jockeyskill, distancerun):
+        self.horsename = horsename
+        self.jockeyname = jockeyname
+        self.horsespeed = horsespeed
+        self.jockeyskill = jockeyskill
+        self.distancerun = distancerun
+    def race(self):
+        self.distancerun += 25+((horsespeed/100)*(jockeyskill/100))
+Diego = horseandjockey("Silver Bullet", "Diego Brando", 90, 98, 0)
+Johnny = horseandjockey("Slow Dancer", "Johnny Joestar", 95, 85, 0)
+Gyro = horseandjockey("Valkyrie", "Gyro Zepelli", 90, 93, 0)
+Pocoloco = horseandjockey("Hey! Ya!", "Pocoloco", 85, 75, 0)
+racers = [Diego, Johnny, Gyro, Pocoloco]
 
 class character:
     def __init__(self, name, debt, interest, money, hunger, time, action, bet, health, wallet):
@@ -229,11 +243,13 @@ class character:
             time.sleep(0.5)
             print(f"Your bet is ${self.bet}, correct?")
             self.action = input("").lower()
-        while not "trifecta" in mode and not "single winner" in mode:
+        while "trifecta" != mode and "single winner" != mode:
             mode = input("Bet on a trifecta or single winner. ").lower()
         time.sleep(0.5)
         self.action == "no"
-        if "trifecta" in mode:
+        for i in racers:
+            print(i(horsename))
+        if "trifecta" == mode:
             while self.action == "no":
                 horseval3_1 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your first horse here! "))
                 horseval3_2 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your second horse here! "))
