@@ -27,31 +27,42 @@ elif Unamed_bum.day < 8:
         Unamed_bum.greed = random.randint(1,50)
     else:
         Unamed_bum.greed = random.randint(25, 75)
-    x = input("Do you want to poke him with a stick to check his friendliness?").upper()
+    x = input("Do you want to poke him with a stick to check his friendliness? ").upper()
     if x != "NO":
         print("Okie")
         print("You poke him with a stick...")
         time.sleep(0.5)
         if Unamed_bum.frnd >= 80:
-            print("Bum - WTF man! You got some money fo me?")
+            print("Bum - WTF ma! You got sum moneh fo me?")
         elif Unamed_bum.frnd >= 60:
-            print("Bum - Aye, hop off with the stick! Before I give you BTA!!")
+            print("Bum - Ay, hop off with the stick! Before I givve you BTA!!")
         elif Unamed_bum.frnd >= 40:
             print("The bum stands up")
-            print("Bum - On your left buddy!")
+            print("Bum - On yo lef sheethed!")
             print(" - 10 HP")
             healt -= 10
-            print("Bum - Maybe next time you will think twice buddy!") 
-        elif Unamed_bum.frnd >= 0:
+            print("Bum - Maybb nex time you think twice!") 
+        elif Unamed_bum.frnd >= 10:
             print("The Bum dashes up!")
+            time.sleep(0.5)
             print("INBOUND CRACK ATTACK")
-            print("Bum - On ur right buddy!")
+            time.sleep(0.5)
+            print("Bum - On yo righ bud!")
+            time.sleep(0.5)
             print(" - 20 HP")
             healt -= 20
             print("Bum - Some of the white stuff in yo face!")
+            time.sleep(0.5)
             print("*all_purpose_flour.tm* Thrown in your face")
             while z <= 10:
                 print("Poison damage! - 5 HP")
                 healt -= 5
-                time.sleep(0.5)
-                x += 1
+                time.sleep(1)
+                z += 1
+        elif Unamed_bum.frnd >= 0:
+            print("THE BUM CASTS FIREBALL!")
+            print("-100 HP!")
+            healt -= 100
+            print("Title Screen")
+            print("How you die lmaooo")
+        print("Anyways, looks like the bums friendliness was", Unamed_bum.frnd)
