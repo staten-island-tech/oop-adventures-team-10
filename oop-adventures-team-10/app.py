@@ -12,7 +12,7 @@ def wipescreen(x):
 
 
 wipescreen(50)
-input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate.")
+input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate. [Enter to continue]")
 wipescreen(100)
 for parts in difficulties:
     print(parts["difficulty"], ": Start with a debt of $", parts["starting debt"])
