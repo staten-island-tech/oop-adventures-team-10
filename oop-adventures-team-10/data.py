@@ -32,20 +32,29 @@ food = [
         "hunger filled": 15
     }
 ]
+places = 1
 
 class horseandjockey:
-    def __init__(self, horsename, jockeyname, horsespeed, jockeyskill, distancerun):
+    def __init__(self, horsename, jockeyname, horsespeed, jockeyskill, distancerun, placement):
         self.horsename = horsename
         self.jockeyname = jockeyname
         self.horsespeed = horsespeed
         self.jockeyskill = jockeyskill
         self.distancerun = distancerun
+        self.placement = placement
     def race(self):
-        self.distancerun += 25+((horsespeed/100)*(jockeyskill/100))
-Diego = horseandjockey("Silver Bullet", "Diego Brando", 90, 98, 0)
-Johnny = horseandjockey("Slow Dancer", "Johnny Joestar", 95, 85, 0)
-Gyro = horseandjockey("Valkyrie", "Gyro Zepelli", 90, 93, 0)
-Pocoloco = horseandjockey("Hey! Ya!", "Pocoloco", 85, 75, 0)
+        if self.distance < 2000:
+            self.distancerun += round(25+((horsespeed/100)*(jockeyskill/100)), 1)
+        else:
+            self.placement = places
+            places += 1
+    def raceprint(self):
+        print(f"{f'{'|':█<{self.distancerun}}':<100}|⡪| {self.horsename}")
+
+Diego = horseandjockey("Silver Bullet", "Diego Brando", 90, 98, 0, 0)
+Johnny = horseandjockey("Slow Dancer", "Johnny Joestar", 95, 85, 0, 0)
+Gyro = horseandjockey("Valkyrie", "Gyro Zepelli", 90, 93, 0, 0)
+Pocoloco = horseandjockey("Hey! Ya!", "Pocoloco", 85, 75, 0, 0)
 racers = [Diego, Johnny, Gyro, Pocoloco]
 
 class character:
@@ -229,6 +238,7 @@ class character:
         print(f"{f'| {self.wallet}':<91}|")
         input("|________________________________________________________________________________________|")
     def horseracing(self):
+        places = 1
         multi = 0
         self.action = "no"
         accuracy1 = "no"
@@ -237,6 +247,9 @@ class character:
         mode = "N/A"
         race = True
         print("Welcome to the el horsey where u lose all ur money, but theres a chance you can make 5 buckaroos!")
+        print("Racers:")
+        for i in racers:
+            print(f"{f'Jockey: {i.jockeyname}':<25} Horse: {i.horsename}")
         time.sleep(1)
         while self.action == "no":
             self.bet = float(input("How much would you like to bet today? "))
@@ -247,8 +260,6 @@ class character:
             mode = input("Bet on a trifecta or single winner. ").lower()
         time.sleep(0.5)
         self.action == "no"
-        for i in racers:
-            print(i(horsename))
         if "trifecta" == mode:
             while self.action == "no":
                 horseval3_1 = int(input("8 Horses! Choose 3! Choose Wisely! Choose your first horse here! "))
@@ -272,23 +283,30 @@ class character:
         print("GO!!!")
         time.sleep(1)
         while race == True:
-            h1 = random.randint(1,8)
-            h2 = random.randint(1,8)
-            h3 = random.randint(1,8)
-            while h1 == h2:
-                h2 = random.randint(1,8)
-            while h3 == h2 or h3 == h1:
-                h3 = random.randint(1,8)
-            print("_______________Lap", x,"________________")
-            print("Top 3 horses: ")
-            print("|Lead Horse:", h1)
-            print("|Second Place:", h2)
-            print("|Third Place:", h3)
-            time.sleep(2)
-            x += 1
-            if x >= 4:
-                print("Final Winners!", h1, h2, h3)
-                break
+            print("________________________________________________")
+            for i in racers:
+                i.raceprint()
+            race == True
+            for i in racers:
+                if i.distancerun <= 2000:
+                    race = False
+            # h1 = random.randint(1,8)
+            # h2 = random.randint(1,8)
+            # h3 = random.randint(1,8)
+            # while h1 == h2:
+            #     h2 = random.randint(1,8)
+            # while h3 == h2 or h3 == h1:
+            #     h3 = random.randint(1,8)
+            # print("_______________Lap", x,"________________")
+            # print("Top 3 horses: ")
+            # print("|Lead Horse:", h1)
+            # print("|Second Place:", h2)
+            # print("|Third Place:", h3)
+            # time.sleep(2)
+            # x += 1
+            # if x >= 4:
+            #     print("Final Winners!", h1, h2, h3)
+            #     break
         if "trifecta" in mode:
             time.sleep(1)
             if horseval3_1 == h1 and horseval3_2 == h2 and horseval3_3 == h3:
