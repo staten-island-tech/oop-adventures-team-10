@@ -3,7 +3,7 @@ import json
 import random
 from data import character
 
-difficulties = json.load(open("oop-adventures-team-10./difficulties.json", encoding="utf8"))
+difficulties = json.load(open("oop-adventures-team-10/difficulties.json", encoding="utf8"))
 currentdiff = int(10)
 trueorfalse = 0
 def wipescreen(x):
@@ -12,7 +12,7 @@ def wipescreen(x):
 
 
 wipescreen(50)
-input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate. [Enter to continue]")
+input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate. [Enter to continue] ")
 wipescreen(100)
 for parts in difficulties:
     print(parts["difficulty"], ": Start with a debt of $", parts["starting debt"])
@@ -50,6 +50,10 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         player.restaurant()
     elif "check wallet" in player.action:
         player.checkwallet()
+    elif "horse race" in player.action:
+        print("Going to the horse races...")
+        time.sleep(1)
+        player.horseracing()
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":
