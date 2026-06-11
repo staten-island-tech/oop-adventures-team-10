@@ -34,6 +34,53 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
     wipescreen(50)
     player.terminal()
     player.action = str(input().lower())
+    if random.randint(1,2) == 1:
+        z = 1
+        print("___________________HOMELESS_BUM____________________")
+        print("           ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️                ")
+        print("You encounter a bum!")
+        bum_frnd = random.randint(1,100) # Friendliness
+        chk_bum = input("Do you want to poke him with a stick to check his friendliness? ").upper()
+        if chk_bum != "NO":
+            print("Okie")
+            print("You poke him with a stick...")
+            time.sleep(0.5)
+            if bum_frnd >= 80:
+                print("Bum - WTF ma! You got sum moneh fo me?")
+            elif bum_frnd >= 60:
+                print("Bum - Ay, hop off with the stick! Before I givve you BTA!!")
+            elif bum_frnd >= 40:
+                print("The bum stands up")
+                print("Bum - On yo lef sheethed!")
+                print(" - 10 HP")
+                healt -= 10
+                print("Bum - Maybb nex time you think twice!") 
+            elif bum_frnd >= 10:
+                print("The Bum dashes up!")
+                time.sleep(0.5)
+                print("INBOUND CRACK ATTACK")
+                time.sleep(0.5)
+                print("Bum - On yo righ bud!")
+                time.sleep(0.5)
+                print(" - 20 HP")
+                healt -= 20
+                print("Bum - Some of the white stuff in yo face!")
+                time.sleep(0.5)
+                print("*all_purpose_flour.tm* Thrown in your face")
+                while z <= 10:
+                    print("Poison damage! - 5 HP")
+                    healt -= 5
+                    time.sleep(1)
+                    z += 1
+            elif bum_frnd >= 0:
+                print("THE BUM CASTS FIREBALL!")
+                print("-100 HP!")
+                healt -= 100
+                print("Title Screen")
+                print("How you die lmaooo")
+            time.sleep(1)
+        else:
+            print("You choose not to poke the bum.")
     wipescreen(25)
     if "loan shark" in player.action:
         player.loansharks()
