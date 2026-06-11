@@ -1,31 +1,31 @@
 [
     {
         "number": 0,
-        "difficulty": "Easy",
+        "difficulty": "easy",
         "starting debt": 1000000.00,
         "interest": 1.01
     },
     {
         "number": 1,
-        "difficulty": "Medium",
+        "difficulty": "medium",
         "starting debt": 10000000.00,
         "interest": 1.05
     },
     {
         "number": 2,
-        "difficulty": "Hard",
+        "difficulty": "hard",
         "starting debt": 100000000.00,
         "interest": 1.10
     },
     {
         "number": 3,
-        "difficulty": "Impossible",
+        "difficulty": "impossible",
         "starting debt": 1000000000.00,
         "interest": 1.15
     },
     {
         "number": 4,
-        "difficulty": "Dumb Dastardly Disgustingly Dreadfully Drunk Deadbeat Dreary Declining deceitful dry disloyal damp despicable defective depressing despondent disagreeable dad",
+        "difficulty": "dumb dastardly disgustingly dreadfully drunk deadbeat dreary declining deceitful dry disloyal damp despicable defective depressing despondent disagreeable dad",
         "starting debt": 1000000000000000.00,
         "interest": 1.25
     }

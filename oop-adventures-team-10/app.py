@@ -15,11 +15,11 @@ wipescreen(50)
 input("You've been slacking. You've racked up millions of dollars in debt, and you need to pay it back in full. Otherwise, it'll be quite unfortunate. [Enter to continue] ")
 wipescreen(100)
 for parts in difficulties:
-    print(parts["difficulty"], ": Start with a debt of $", parts["starting debt"])
+    print(f"{parts["difficulty"].title()}: Start with a debt of ${parts["starting debt"]}")
 currentdiff = input("Choose a difficulty: ").lower()
 while trueorfalse != True:
     for parts in difficulties:
-        if currentdiff == parts["difficulty"].lower() or currentdiff == parts["number"]:
+        if currentdiff == parts["difficulty"] or currentdiff == int(parts["number"]+1):
             currentdiff = parts["number"]
             trueorfalse = 1
             break
@@ -54,6 +54,10 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         print("Going to the horse races...")
         time.sleep(1)
         player.horseracing()
+    elif "job" in player.action:
+        print("Going to the job center...")
+        time.sleep(1)
+        player.work
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":

@@ -90,6 +90,7 @@ class blackjackplayer:
 def wipescreen(x):
     for i in range(x):
         print("")
+
 class horseandjockey:
     def __init__(self, horsename, jockeyname, horsespeed, jockeyskill, distancerun):
         self.horsename = horsename
@@ -99,23 +100,22 @@ class horseandjockey:
         self.distancerun = distancerun
     def race(self):
         if self.distancerun < 2000:
-            self.distancerun += round(random.randint(10, 30)+((self.horsespeed/100)*(self.jockeyskill/100)), 2)
+            self.distancerun += round(random.randint(5, 10) + ((self.horsespeed/100) * (self.jockeyskill/100) * 10), 2)
             self.distancerun = round(self.distancerun, 2)
-        else:
+        if self.distancerun >= 2000:
             self.distancerun = 2000
-            if self.jockeyname.title() not in finishingrankings:
+            if self.jockeyname not in finishingrankings:
                 finishingrankings.append(self.jockeyname.title())
     def raceprint(self):
         print(f"{f'{'|':⣿<{self.distancerun/10}}':<200}|⡪|  {self.jockeyname}, {self.distancerun} meters")
 diego = horseandjockey("Silver Bullet", "Diego Brando", 90, 98, 0)
 johnny = horseandjockey("Slow Dancer", "Johnny Joestar", 95, 85, 0)
 gyro = horseandjockey("Valkyrie", "Gyro Zeppeli", 90, 93, 0)
-pocoloco = horseandjockey("Hey! Ya!", "Pocoloco", 85, 75, 0)
+pocoloco = horseandjockey("Hey! Ya!", "Pocoloco", 85, 95, 0)
 tim = horseandjockey("Ghost Rider in the Sky", "Mountain Tim", 96, 90, 0)
 hotpants = horseandjockey("Gets Up", "Hot Pants", 89, 95, 0)
-sandman = horseandjockey("None (He'll be on foot)", "Sandman", 98, 93, 0)
-robinson = horseandjockey("El Condor Pasa", "Mrs. Robinson", 87, 85, 0)
-racers = [diego, johnny, gyro, pocoloco, tim, hotpants, sandman, robinson]
+sandman = horseandjockey("None (He'll be on foot)", "Sandman", 97, 93, 0)
+racers = [diego, johnny, gyro, pocoloco, tim, hotpants, sandman]
 class character:
     def __init__(self, name, debt, interest, money, hunger, time, action, bet, health, wallet):
         self.name = name
@@ -359,15 +359,16 @@ class character:
         self.action = "no"
         mode = "N/A"
         race = True
+        global finishingrankings
         x = 0
         self.bet = float(0)
-        global finishingrankings
         finishingrankings = []
         print("Welcome to the el horsey where u lose all ur money, but theres a chance you can make 5 buckaroos!")
+        print("")
         print("Racers:")
         for i in racers:
             print(f"{f'Jockey: {i.jockeyname}':<25} Horse: {i.horsename}")
-        time.sleep(1)
+        print("")
         print(f"Your balance: ${self.money}")
         while True:
             try:
@@ -382,6 +383,7 @@ class character:
             mode = input("Bet on a trifecta or single winner. ").lower()
         time.sleep(0.5)
         self.action == "no"
+        finishingrankings = []
         if "trifecta" == mode:
             for i in range(3):
                 self.action = ""
@@ -402,16 +404,14 @@ class character:
                         selections.append(racer.jockeyname.title())
                         x = 1
             x = 0
-        self.money -= self.bet
         print("Let's begin the race!!!")
         for i in range(3):
             time.sleep(1)
             print(3-i)
         print("GO!!!")
         time.sleep(1)
-        while race == True:
-            wipescreen(40)
-            print("__________________________________________________________________________________________________________________________________")
+        while race == True: #actual race happens
+            wipescreen(10)
             for i in racers:
                 i.race()
                 i.raceprint()
@@ -419,12 +419,12 @@ class character:
             for index, racer in enumerate(racers):
                 if racer.distancerun < 2000:
                     race = True
-            time.sleep(0.5)
+            time.sleep(0.2)
         print("And the race is over!")
         input("")
         print("Race rankings:")
-        for index, racer in enumerate(racers):
-            print(f"{index+1}. {racer.jockeyname}")
+        for index, racer in enumerate(finishingrankings):
+            print(f"{index+1}. {racer}")
         print("Your ranking(s)")
         for index, racer in enumerate(selections):
             print(f"{index+1}. {racer}")
@@ -440,19 +440,19 @@ class character:
                 self.money += self.bet * multi
             else:
                 print("Stinky Run today, huh?")
-                print("Final Outcome, 0 dollars") 
+                print("Final Outcome, $0.") 
         elif mode == "single winner":
             if selections[0] == finishingrankings[0]:
                 multi = random.randint(80, 100)/10
                 self.bet = round((self.bet * multi), 2)
                 print("Congrats!!!!")
                 print("Your chosen lead horse has won!!!")
-                print(f"You've won {self.bet}")
+                print(f"You've won ${self.bet} at a {multi}x multiplier!")
                 self.money += self.bet
             else:
                 print("Stinky Run today, huh")
                 print("Final Outcome, $0.")
-        self.time += 60
+        self.time += 75
         input("")
     def work(self):
         print("You look for a job everwhere, but nobody is willing to hire you.")
