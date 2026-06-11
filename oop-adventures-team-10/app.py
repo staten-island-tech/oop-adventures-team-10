@@ -30,10 +30,57 @@ player.name = input("What is your name? ")
 while len(player.name) > 40:
     player.name = input("Please enter a name less than 40 characters long. ")
 
-while player.money >= 0 and player.hunger >= 0 and player.health > 0:
+while player.hunger >= 0 and player.health > 0:
     wipescreen(50)
     player.terminal()
     player.action = str(input().lower())
+    if random.randint(1,5) == 1:
+        z = 1
+        print("___________________HOMELESS_BUM____________________")
+        print("           ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️  ❤️                ")
+        print("You encounter a bum!")
+        bum_frnd = random.randint(1,100) # Friendliness
+        chk_bum = input("Do you want to poke him with a stick to check his friendliness? ").upper()
+        if chk_bum != "NO":
+            print("Okie")
+            print("You poke him with a stick...")
+            time.sleep(0.5)
+            if bum_frnd >= 80:
+                print("Bum - WTF ma! You got sum moneh fo me?")
+            elif bum_frnd >= 60:
+                print("Bum - Ay, hop off with the stick! Before I givve you BTA!!")
+            elif bum_frnd >= 40:
+                print("The bum stands up")
+                print("Bum - On yo lef sheethed!")
+                print(" - 10 HP")
+                player.health -= 10
+                print("Bum - Maybb nex time you think twice!")
+            elif bum_frnd >= 10:
+                print("The Bum dashes up!")
+                time.sleep(0.5)
+                print("INBOUND CRACK ATTACK")
+                time.sleep(0.5)
+                print("Bum - On yo righ bud!")
+                time.sleep(0.5)
+                print(" - 20 HP")
+                player.health -= 20
+                print("Bum - Some of the white stuff in yo face!")
+                time.sleep(0.5)
+                print("*all_purpose_flour.tm* Thrown in your face")
+                while z <= 10:
+                    print("Poison damage! - 5 HP")
+                    player.health -= 5
+                    time.sleep(1)
+                    z += 1
+            elif bum_frnd >= 0:
+                print("THE BUM CASTS FIREBALL!")
+                print("-100 HP!")
+                player.health -= 100
+                print("Title Screen")
+                print("How you die lmaooo")
+            time.sleep(1)
+        else:
+            print("You choose not to poke the bum.")
     wipescreen(25)
     if "loan shark" in player.action:
         player.loansharks()
@@ -50,14 +97,6 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         player.restaurant()
     elif "check wallet" in player.action:
         player.checkwallet()
-    elif "horse race" in player.action:
-        print("Going to the horse races...")
-        time.sleep(1)
-        player.horseracing()
-    elif "job" in player.action:
-        print("Going to the job center...")
-        time.sleep(1)
-        player.work
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":
@@ -66,3 +105,8 @@ while player.money >= 0 and player.hunger >= 0 and player.health > 0:
         time.sleep(2)
         player.time = 360
         player.daily()
+wipescreen(50)
+if player.health <= 0:
+    print("Man, you died.")
+elif player.hunger <= 0:
+    print("You starved to death. Better luck next time.")

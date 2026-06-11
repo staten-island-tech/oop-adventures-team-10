@@ -90,7 +90,6 @@ class blackjackplayer:
 def wipescreen(x):
     for i in range(x):
         print("")
-
 class horseandjockey:
     def __init__(self, horsename, jockeyname, horsespeed, jockeyskill, distancerun):
         self.horsename = horsename
@@ -145,6 +144,7 @@ class character:
         print("|                                                                                                    |")
         print("|                    Miscellanous                                                                    |")
         print("| Check Wallet                                                                                       |")
+        print("| Sleep                                                                                              |")
         print("⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
     def daily(self):
         self.hunger -= 20
@@ -155,7 +155,10 @@ class character:
         print(f"Loan Shark guy: \"Let's see, you're {self.name}. What are you here for?\"")
         print("Your Options:")
         print("1.\"I'm here to take another loan.\" (This will add to your current debt and interest will be applied accordingly.)")
-        print("2.\"I'm here to pay back some of my debt.\"(Minimum of $5,000 accepted.)")
+        if self.money < self.debt:
+            print("2.\"I'm here to pay back some of my debt.\"(Minimum of $5,000 accepted.)")
+        else:
+            print("2. \"I'm here to pay back all my debt\"")
         print("3.\"Actually, nevermind. I'll be heading out.\"")
         self.action = input("")
         if self.action == "1":
@@ -164,14 +167,50 @@ class character:
                 try:
                     self.action = float(0)
                     while self.action <= 0:
-                        self.action = float(input("Enter a value:"))
+                        self.action = float(input("Enter a value: $"))
+                        self.action = round(self.action, 2)
                     break
                 except ValueError:
-                    print("Enter a valid number.")        
+                    print("Enter a valid number.")
             print("\"All right, you're good to go. Now get going.\"")
+            print(f"Loan of ${self.action}")
             self.debt += self.action
             self.money += self.action
             self.time += 15
+            input("[Press Enter to continue.]")
+        elif self.action == "2":
+            if self.money < self.debt:
+                print("\"Well how much are you paying back?\"")
+                while True:
+                    try:
+                        self.action = float(0)
+                        while self.action <= 0:
+                            self.action = float(input("Enter a value: $"))
+                            self.action = round(self.action, 2)
+                        break
+                    except ValueError:
+                        print("Enter a valid number.")
+                print(" You're good to go.")
+                print(f"Payed ${self.action}")
+                self.debt -= self.action
+                self.money -= self.action
+                self.time += 15
+                input("[Press Enter to continue.]")
+            else:
+                print("\"You're paying it all back?\"")
+                self.action = input("")
+                if self.action == "yes":
+                    print(f"Payed ${self.debt}.")
+                    self.money -= self.debt
+                    self.debt = 0
+                    self.time += 10
+                    input("[Press Enter to continue.]")
+                else:
+                    print("\"Get outtta here!\"")
+                    input("[Press Enter to continue.]")
+        else:
+            print("\"If you're not here to do anything get outta here!\"")
+            input("[Press Enter to continue.]")
     def casino(self):
         print("|⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺ ⎺|")
         print("|                   Town Casino                     |")
