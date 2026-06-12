@@ -79,6 +79,7 @@ while player.hunger >= 0 and player.health > 0:
                 print("Title Screen")
                 print("How you die lmaooo")
             time.sleep(1)
+            input("")
         else:
             print("You choose not to poke the bum.")
     wipescreen(25)
@@ -97,6 +98,8 @@ while player.hunger >= 0 and player.health > 0:
         player.restaurant()
     elif "check wallet" in player.action:
         player.checkwallet()
+    elif "horse race" in player.action:
+        player.horseracing()
     else:
         print("Enter a valid course of action.")
     if player.action == "sleep":

@@ -321,13 +321,12 @@ class character:
             dealer.recievecard(deck.getcard())
         you.show_hand()
         dealer.show_hand()
-        self.casino()
         while you.total < 21:
-            action = input("\nHit or Stand? ").lower()
-            if action == "hit":
+            self.action = input("\nHit or Stand? ").lower()
+            if self.action == "hit":
                 you.recievecard(deck.getcard())
                 you.show_hand()
-            elif action == "stand":
+            elif self.action == "stand":
                 break
             else:
                 print("Please type 'hit' or 'stand'.")
@@ -348,6 +347,8 @@ class character:
             print(f"Dang man, that's rough, better luck next time.")
         else:
             print(f"It's a push.")
+        input("[Enter to continue]")
+        self.time += 15
     def restaurant(self):
         print("Waiter: Welcome, let me get you a seat and here's your menu.")
         print("")
