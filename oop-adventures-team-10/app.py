@@ -110,6 +110,6 @@ while player.hunger >= 0 and player.health > 0:
         player.daily()
 wipescreen(50)
 if player.health <= 0:
-    print("Man, you died.")
+    print("Man, you died to death. Unfortunate.s")
 elif player.hunger <= 0:
     print("You starved to death. Better luck next time.")
