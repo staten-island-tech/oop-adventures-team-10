@@ -83,6 +83,10 @@ while player.hunger >= 0 and player.health > 0:
         else:
             print("You choose not to poke the bum.")
     wipescreen(25)
+    if player.time >= 1320:
+        print("It's late, going to sleep...")
+        time.sleep(2)
+        player.daily()
     if "loan shark" in player.action:
         player.loansharks()
     elif "casino" in player.action:
@@ -106,7 +110,6 @@ while player.hunger >= 0 and player.health > 0:
         wipescreen(25)
         print("Going to sleep...")
         time.sleep(2)
-        player.time = 360
         player.daily()
 wipescreen(50)
 if player.health <= 0:
